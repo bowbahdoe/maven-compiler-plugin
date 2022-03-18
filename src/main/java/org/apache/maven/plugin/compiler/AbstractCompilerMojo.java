@@ -40,6 +40,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import dev.mccue.compiler.AwesomeCompilerMessage;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.handler.ArtifactHandler;
@@ -1261,16 +1262,16 @@ public abstract class AbstractCompilerMojo
         {
             if ( message.getKind() == CompilerMessage.Kind.ERROR )
             {
-                errors.add( message );
+                errors.add( new AwesomeCompilerMessage(message) );
             }
             else if ( message.getKind() == CompilerMessage.Kind.WARNING
                 || message.getKind() == CompilerMessage.Kind.MANDATORY_WARNING )
             {
-                warnings.add( message );
+                warnings.add( new AwesomeCompilerMessage(message) );
             }
             else
             {
-                others.add( message );
+                others.add( new AwesomeCompilerMessage(message) );
             }
         }
 
